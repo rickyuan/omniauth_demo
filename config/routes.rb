@@ -1,7 +1,10 @@
 OmniauthDemo::Application.routes.draw do
-  get "services/create"
-
-  get "services/failure"
+  resources :users
+  resources :services
+  
+  match '/auth/:provider/callback' => 'sessions#create'
+  
+  root :to => 'services#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
